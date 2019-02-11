@@ -2,7 +2,7 @@
 
 Exemplo de microsserviço criado para fins de teste. Implementado com Spring boot, conecta-se a uma instância do Mongo (configuração padrão) para simular dívidas exportadas do Mainframe.
 
-Ao inicializar, a aplicação cria alguns dados de teste, na collection Dividas; exemplo do modelo de dados:
+Ao inicializar, a aplicação cria alguns dados de teste, na collection Dividas, para o CPF 25429106852; exemplo do modelo de dados:
 
 
 	{
@@ -33,4 +33,5 @@ Para fazer build, executar a task "build" do gradle; será gerado relatório de 
 # Observações
 
 
-* Não foi implementado mecanismo de autenticação. 
+* Não foi implementado mecanismo de autenticação;
+* O serviço se registra em um Eureka server, que deve rodar em localhost:8080 

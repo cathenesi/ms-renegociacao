@@ -3,6 +3,7 @@ package org.banco.renegociacao.ws.configuration;
 import org.banco.renegociacao.infrastructure.repository.DividaClienteRepository;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +24,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableAutoConfiguration
 @EnableSwagger2
 @EnableMongoRepositories(basePackageClasses = DividaClienteRepository.class)
+@EnableDiscoveryClient
 public class ModuleConfiguration {
 
 	public static final String BASE_PACKAGE = "org.banco.renegociacao";

@@ -1,9 +1,11 @@
-###############################################
-#        CONFIGURAÇÕES DO SPRINGBOOT          #
-###############################################
 server:
   port: 9090
 
+eureka:
+ client:
+   serviceUrl:
+     defaultZone: http://localhost:8080/eureka
+     
 messages:
   basename: messages
   default:
