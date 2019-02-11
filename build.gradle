@@ -1,0 +1,88 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.5.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'se.transmode.gradle:gradle-docker:1.2'
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.2"
+    }
+
+}
+
+apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'docker'
+apply plugin: 'org.sonarqube'
+
+group = 'org.template'
+version = '1.0.0'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+jacoco{
+    toolVersion = '0.8.1'
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.5
+            }
+        }
+    }
+}
+
+
+jacocoTestReport {
+    reports {
+        csv.enabled false
+        xml.enabled true
+    }
+    executionData(test)
+}
+
+tasks.build.dependsOn(jacocoTestReport)
+
+test{
+    jacoco{
+        append = false
+        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+        classDumpDir = file("$buildDir/jacoco/classpathdumps")
+    }
+}
+
+dependencies {
+    implementation('io.springfox:springfox-swagger2:2.9.2')
+    implementation('io.springfox:springfox-swagger-ui:2.9.2')
+    implementation('org.springframework.boot:spring-boot-starter-actuator')
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.codehaus.jackson:jackson-mapper-asl:1.9.13')
+    implementation('org.springframework.boot:spring-boot-starter-data-mongodb')
+    compileOnly('org.projectlombok:lombok:1.16.18')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation('org.mockito:mockito-core:2.23.4')
+}
+
+docker {
+    baseImage "openjdk:8u171-jdk-alpine3.8"
+}
+
+task dockerImage(type: Docker, dependsOn: 'build') {
+    group 'build'
+    applicationName = "${rootProject.name}".toLowerCase()
+    exposePort 9052
+    addFile("build/libs/${rootProject.name}-${version}.jar","/tmp")
+    workingDir("/tmp")
+    entryPoint(["java","-jar","${rootProject.name}-${version}.jar"])
+}

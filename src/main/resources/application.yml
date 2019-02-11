@@ -1,0 +1,12 @@
+###############################################
+#        CONFIGURAÇÕES DO SPRINGBOOT          #
+###############################################
+server:
+  port: 9090
+
+messages:
+  basename: messages
+  default:
+    country: BR
+    language: PT
+    encoding: UTF-8
