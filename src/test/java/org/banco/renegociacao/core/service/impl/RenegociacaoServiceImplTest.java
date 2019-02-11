@@ -15,7 +15,6 @@ import org.banco.renegociacao.infrastructure.repository.DividaClienteRepository;
 import org.banco.renegociacao.ws.dto.DividaDto;
 import org.banco.renegociacao.ws.dto.SimulacaoPagamentoDto;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
