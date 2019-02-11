@@ -5,3 +5,5 @@ Exemplo de microsserviço criado para fins de teste. Implementado com Spring boo
 Para editar o código fonte, é necessário o instalar o plugin Lombok (https://projectlombok.org/) na IDE.
 
 Ao rodar a aplicação, a documentação da API pode ser vista na URL: http://localhost:9090/swagger-ui.html
+
+Para fazer build, executar a task "build" do gradle.
