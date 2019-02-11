@@ -2,7 +2,7 @@
 
 Exemplo de microsserviço criado para fins de teste. Implementado com Spring boot, conecta-se a uma instância do Mongo (configuração padrão) para simular dívidas exportadas do Mainframe.
 
-Ao inicializar, a aplicação cria alguns dados de teste, na collection Dividas, para o CPF 25429106852; exemplo do modelo de dados:
+Para rodar, executar a classe Application.java. Ao inicializar, a aplicação cria alguns dados de teste, na collection Dividas, para o CPF 25429106852; exemplo do modelo de dados:
 
 
 	{

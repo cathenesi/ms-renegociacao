@@ -21,7 +21,7 @@ apply plugin: 'io.spring.dependency-management'
 apply plugin: 'docker'
 apply plugin: 'org.sonarqube'
 
-group = 'org.template'
+group = 'org.banco.renegociacao'
 version = '1.0.0'
 sourceCompatibility = 1.8
 
